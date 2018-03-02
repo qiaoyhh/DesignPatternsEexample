@@ -5,6 +5,9 @@ import com.qyh.designpatternsexample.abstrafactory.concrete_factory.MaleHumanFac
 import com.qyh.designpatternsexample.factory.concrete_product.BlackHuman;
 import com.qyh.designpatternsexample.factory.concrete_product.WhiteHuman;
 import com.qyh.designpatternsexample.factory.contrete_factory.HumanFactory;
+import com.qyh.designpatternsexample.mediator.Boss;
+import com.qyh.designpatternsexample.mediator.HeadhuntingMediator;
+import com.qyh.designpatternsexample.mediator.Jobhunter;
 import com.qyh.designpatternsexample.proxy.dynamic_proxy.GamePlayIH;
 import com.qyh.designpatternsexample.proxy.static_proxy.GamePlayProxy;
 import com.qyh.designpatternsexample.proxy.static_proxy.GamePlayer;
@@ -103,5 +106,20 @@ public class ExampleUnitTest {
         proxy.login("jordan","jjj");
         proxy.killBoss();
         proxy.upgrade();
+    }
+
+    // 中介者模式测试
+    @Test
+    public void testMediator(){
+        // 猎头 老板 求职者
+        HeadhuntingMediator mediator = new HeadhuntingMediator();
+        Boss boss = new Boss("Jack Ma",mediator);
+        Jobhunter jobhunter = new Jobhunter("Pony",mediator);
+
+        mediator.setBoss(boss);
+        mediator.setJobhunter(jobhunter);
+
+        jobhunter.contact("Boss您好，我有三年阿里，两年腾讯，四年华为，五年百度的 保洁工作经验");
+        boss.contact("吆西，我们就需要的这样的人才，明天来上班！");
     }
 }
