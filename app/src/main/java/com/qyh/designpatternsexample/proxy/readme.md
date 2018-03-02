@@ -6,12 +6,15 @@
 - 静态代理：代理者的代码有程序员自己或通过一些自动化工具生成固定的代码再对其进行编译，也就是说在我们代码运行前代理类的class编译文件就已经存在。
 - 动态代理：与静态代理相反，通过发射机制动态地生成代理者的对象，也就是说我们code阶段压根就不需要知道代理谁，代理谁我们在执行阶段决定。
 
-### 二、静态代理组成
+### 三、UML类图
+
+![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/proxy_uml.png)
+
 - Subject:抽象类或者接口，声明真实对象和代理者行为的公共类
 - RealSubject：真实对象，被代理的对象，最终引用
 - Proxy：代理对象，包含对真实对象的引用，代表真实对象
 
-### 三、静态代理案例
+### 四、静态代理案例
 场景：网瘾少年玩游戏，打怪升级
 
 **所有玩家接口，定义玩家的行为(Subject)**
@@ -109,7 +112,7 @@ gamePlayProxy.killBoss();
 gamePlayProxy.upgrade();
 ```
 
-### 四、动态态代理案例
+### 五、动态态代理案例
 现在有个非常流行的程序叫做面向切面编程(AOP),其核心就是采用了动态代理的方式。怎么用？Java为我们提供了一个便捷的动态代理接口 InvocationHandler，实现该接口需要重写其调用方法invoke
 ```java
 public class DynamicProxy implements InvocationHandler {
@@ -162,7 +165,7 @@ IGamePlayer proxy = (IGamePlayer) Proxy.newProxyInstance(classLoader, new Class[
 由其invoke()接管所有方法的实现。
 
 ##### 注：要实现动态代理的首要条件：被代理类必须实现一个接口
-### 五、优缺点
+### 六、优缺点
 #### 优点：
 - 1.协调调用者和被调用者，降低了系统的耦合度
 - 2.代理对象作为客户端和目标对象之间的中介，起到了保护目标对象的作用
@@ -170,8 +173,8 @@ IGamePlayer proxy = (IGamePlayer) Proxy.newProxyInstance(classLoader, new Class[
 - 1.由于在客户端和真实主题之间增加了代理对象，因此会造成请求的处理速度变慢；
 - 2.实现代理模式需要额外的工作（有些代理模式的实现非常复杂），从而增加了系统实现的复杂度。
 
-### 六、应用场景
+### 七、应用场景
 
-![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/proxy_user.png)
+![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/proxy_use.png)
 
 #### 图片摘自网络！

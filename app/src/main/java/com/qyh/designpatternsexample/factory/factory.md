@@ -5,13 +5,16 @@
 
 总结：工厂方法使一个类的的实例化延迟到子类中。
 
-### 二、模式组成：
+### 二、UML类图及解析：
+
+![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/factory_uml.png)
+
 | 组成（角色）                    | 关系                             | 作用                        |
 | ------------------------------| --------------------------------| -------------------------- |
-| 抽象产品（Product）             | 具体产品的父类	                  | 描述具体产品的公共接口 |
-| 具体产品（Concrete Product）    | 抽象产品的子类；工厂类创建的目标类   |  描述生产的具体产品  |
-| 抽象工厂（Creator）	            | 具体工厂的父类	                  |  描述具体工厂的公共接口 |
-| 具体工厂（Concrete Creator）    | 抽象工厂的子类；被外界调用	         | 描述具体工厂；实现FactoryMethod工厂方法创建产品的实例 |
+| 抽象产品（AbstractProduct）     | 具体产品的父类	                  | 描述具体产品的公共接口 |
+| 具体产品（ConcreteProduct）     | 抽象产品的子类；工厂类创建的目标类     |  描述生产的具体产品  |
+| 抽象工厂(AbstractFactory)      | 具体工厂的父类	                   |  描述具体工厂的公共接口 |
+| 具体工厂（ConcreteFactory)      | 抽象工厂的子类；被外界调用	           | 描述具体工厂；实现FactoryMethod工厂方法创建产品的实例 |
 
 ### 三、使用步骤：
 ●　步骤1： 创建抽象工厂类，定义具体工厂的公共接口；

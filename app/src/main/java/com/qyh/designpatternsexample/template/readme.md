@@ -4,7 +4,15 @@
 ### 二、作用
     在不改变模板结构的前提下在子类中重新定义模板中的内容。
 
-### 三、模版方法模式的结构
+### 三、UML类图及结构解析
+
+![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/template_uml.png)
+
+●　Abstemplate：抽象类，定义了一套算法框架
+
+●　ConcreteImplA：具体实现类A
+
+●　ConcreteImplB：具体实现类B
 #### 抽象模板(Abstract Template)角色有如下责任：
 
 ●　1.定义了一个或多个抽象操作，以便让子类实现。这些抽象操作叫做基本操作，它们是一个顶级逻辑的组成步骤。
