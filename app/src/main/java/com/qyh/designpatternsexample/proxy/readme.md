@@ -160,7 +160,7 @@ IGamePlayer proxy = (IGamePlayer) Proxy.newProxyInstance(classLoader, new Class[
 我们看一下这个方法，该方法时重新生成了一个对象，为什么要重新生成？因为我们需要用代理，new Class[]{IGamePlayer.class}是说查找到该类的所有接口，然后实现接口
 的所有方法。当然了，方法都是空的，由谁负责接管呢？handler这个对象，于是我们知道了一个类的动态代理是这样一个类由InvocationHandler的实现类实现所有的方法，
 由其invoke()接管所有方法的实现。
-
+![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/dyna.png)
 ##### 注：要实现动态代理的首要条件：被代理类必须实现一个接口
 ### 五、优缺点
 #### 优点：
