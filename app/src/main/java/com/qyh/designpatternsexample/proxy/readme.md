@@ -1,0 +1,119 @@
+## 代理模式
+### 一、定义
+- 给目标对象提供一个代理对象，并由代理对象控制对目标对象的引用；
+- 注：代理对象起到中介作用，链接客户端和目标对象。
+### 二、代理分类
+- 静态代理：代理者的代码有程序员自己或通过一些自动化工具生成固定的代码再对其进行编译，也就是说在我们代码运行前代理类的class编译文件就已经存在。
+- 动态代理：与静态代理相反，通过发射机制动态地生成代理者的对象，也就是说我们code阶段压根就不需要知道代理谁，代理谁我们在执行阶段决定。
+
+### 二、静态代理组成
+- Subject:抽象类或者接口，声明真实对象和代理者行为的公共类
+- RealSubject：真实对象，被代理的对象，最终引用
+- Proxy：代理对象，包含对真实对象的引用，代表真实对象
+
+### 三、静态代理案例
+场景：网瘾少年玩游戏，打怪升级
+
+**所有玩家接口，定义玩家的行为(Subject)**
+```java
+public interface IGamePlayer {
+    // 登录
+    void login(String name, String password);
+    // 打怪
+    void killBoss();
+    // 升级
+    void upgrade();
+}
+```
+
+**模拟玩家游戏场景(RealSubject)**
+
+```java
+public class GamePlayer implements IGamePlayer{
+
+    private String mName;
+    public GamePlayer(String name) {
+        this.mName = name;
+    }
+
+    @Override
+    public void login(String name, String password) {
+        System.out.println("用户"+name+"登录成功");
+    }
+
+    @Override
+    public void killBoss() {
+        System.out.println("用户"+mName+"开启超神模式，十连杀");
+    }
+
+    @Override
+    public void upgrade() {
+        System.out.println("恭喜用户"+mName+"成功升到110级");
+    }
+}
+```
+**客户端**
+
+```java
+    GamePlayer gamePlayer = new GamePlayer("jordan");
+    gamePlayer.login("jordan","jjj");
+    gamePlayer.killBoss();
+    gamePlayer.upgrade();
+ ```
+●　客户端运行结果
+
+ - 用户jordan登录成功
+ - 用户jordan开启超神模式，十连杀
+ - 恭喜用户jordan成功升到110级
+
+ #### 接下来我们改变一下需求，jordan这个玩家由于长时间沉迷于游戏中不能自拔，久而久之终于光荣地住进了医院，但是他的游戏正处于打怪升级的关键时候，怎么办？很简单 找个代练，接下来，我们模拟一下这个场景，前面几个类不变，增加一个代理类。
+
+**游戏代理者，同样需要登录游戏，打怪，升级(Proxy)**
+
+```java
+public class GamePlayProxy implements IGamePlayer{
+  private IGamePlayer mIGamePlayer;
+
+  public GamePlayProxy(IGamePlayer iGamePlayer ) {
+      this.mIGamePlayer = iGamePlayer;
+  }
+  // 代练升级
+  @Override
+  public void login(String name, String password) {
+     mIGamePlayer.login(name,password);
+  }
+
+  // 代练打怪
+  @Override
+  public void killBoss() {
+      mIGamePlayer.killBoss();
+  }
+
+  // 代练升级
+  @Override
+  public void upgrade() {
+      mIGamePlayer.upgrade();
+  }
+}
+```
+
+**客户端**
+
+```java
+GamePlayer gamePlayer = new GamePlayer("jordan");
+// 游戏代练者，需要以游戏玩家的身份玩游戏
+GamePlayProxy gamePlayProxy =new GamePlayProxy(gamePlayer);
+
+gamePlayProxy.login("jordan","jjj");
+gamePlayProxy.killBoss();
+gamePlayProxy.upgrade();
+```
+
+
+### 四、优缺点
+#### 优点：
+- 1.协调调用者和被调用者，降低了系统的耦合度
+- 2.代理对象作为客户端和目标对象之间的中介，起到了保护目标对象的作用
+#### 缺点：
+- 1.由于在客户端和真实主题之间增加了代理对象，因此会造成请求的处理速度变慢；
+- 2.实现代理模式需要额外的工作（有些代理模式的实现非常复杂），从而增加了系统实现的复杂度。
