@@ -8,6 +8,11 @@ import com.qyh.designpatternsexample.factory.contrete_factory.HumanFactory;
 import com.qyh.designpatternsexample.mediator.Boss;
 import com.qyh.designpatternsexample.mediator.HeadhuntingMediator;
 import com.qyh.designpatternsexample.mediator.Jobhunter;
+import com.qyh.designpatternsexample.order.Receiver;
+import com.qyh.designpatternsexample.order.command.QQCommand;
+import com.qyh.designpatternsexample.order.command.SinaCommand;
+import com.qyh.designpatternsexample.order.command.WeChatCommand;
+import com.qyh.designpatternsexample.order.invoker.Invoker;
 import com.qyh.designpatternsexample.proxy.dynamic_proxy.GamePlayIH;
 import com.qyh.designpatternsexample.proxy.static_proxy.GamePlayProxy;
 import com.qyh.designpatternsexample.proxy.static_proxy.GamePlayer;
@@ -121,5 +126,26 @@ public class ExampleUnitTest {
 
         jobhunter.contact("Boss您好，我有三年阿里，两年腾讯，四年华为，五年百度的 保洁工作经验");
         boss.contact("吆西，我们就需要的这样的人才，明天来上班！");
+    }
+
+    // 命令模式测试
+    @Test
+    public void testOrder(){
+        // 创建接收者
+        Receiver receiver = new Receiver();
+        //创建具体的命令对象，设定它的接收者
+        QQCommand qqCommand = new QQCommand(receiver);
+        SinaCommand sinaCommand = new SinaCommand(receiver);
+        WeChatCommand weChatCommand = new WeChatCommand(receiver);
+
+        //创建请求者，把命令对象设置进去
+        Invoker invoker = new Invoker();
+        invoker.addCommand(qqCommand);
+        invoker.addCommand(sinaCommand);
+        invoker.addCommand(weChatCommand);
+
+        // 执行方法
+        invoker.allAction();
+        invoker.removeCommand(weChatCommand);
     }
 }
