@@ -211,6 +211,7 @@ public void testIterator() {
 }
 ```
 Log如下，完美~
+
 ![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/iterator_log.png)
 #### 说明
 - 看完这个例子我们可能会想，我们可不可以直接越过组长请假呢？答案是可以的，这也是责任链模式的灵活之处，请求的发起可以从责任链的任何一个节点开始。
