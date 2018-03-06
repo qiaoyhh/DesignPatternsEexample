@@ -50,6 +50,7 @@ public class ConcreteHandler2 extends AbstractHandler {
     }
 }
 ```
+
 **客户类**
 ```java
 // 创建具体的处理者
@@ -63,7 +64,7 @@ concreteHandler1.handleRequest("ConcreteHandler1");
 
 以上是最基本的通用责任链代码，对于请求形式是固定的,通过一个字符串判断该节点上的对象是否能够处理请求。然而在大多情况下，
 责任链中的请求和对应的处理规则是相同的，在这种情况下我们可以将请求进行封装，同时对处理规则也封装成一个对象，类图如下：
-![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/iterator_complex_uml.png)
+![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/iterator_comp_uml.png)
 
 这种形式的通用代码就不贴了，接下来我们用一个实际例子来实现这种方式的实现。
 通过刚才我们对责任链的描述，我们也发现了责任链特别适合于流程审批之类的场景，或者责任转发(View的事件分开)。责任链模式在这里很好地将请求的
