@@ -1,10 +1,17 @@
 package com.qyh.designpatternsexample;
+
 import com.qyh.designpatternsexample.abstrafactory.abstract_product.Human;
 import com.qyh.designpatternsexample.abstrafactory.concrete_factory.FemaleHumanFactory;
 import com.qyh.designpatternsexample.abstrafactory.concrete_factory.MaleHumanFactory;
 import com.qyh.designpatternsexample.factory.concrete_product.BlackHuman;
 import com.qyh.designpatternsexample.factory.concrete_product.WhiteHuman;
 import com.qyh.designpatternsexample.factory.contrete_factory.HumanFactory;
+import com.qyh.designpatternsexample.iterator.example.AbstractLeader;
+import com.qyh.designpatternsexample.iterator.example.CEO;
+import com.qyh.designpatternsexample.iterator.example.CTO;
+import com.qyh.designpatternsexample.iterator.example.Employee;
+import com.qyh.designpatternsexample.iterator.example.GroupLeader;
+import com.qyh.designpatternsexample.iterator.example.IEmployee;
 import com.qyh.designpatternsexample.mediator.Boss;
 import com.qyh.designpatternsexample.mediator.HeadhuntingMediator;
 import com.qyh.designpatternsexample.mediator.Jobhunter;
@@ -24,6 +31,8 @@ import org.junit.Test;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
+import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
@@ -40,9 +49,9 @@ public class ExampleUnitTest {
 
     //工厂模式测试
     @Test
-    public void testFactory(){
+    public void testFactory() {
         //步骤5：外界通过调用具体工厂类的方法，从而创建不同具体产品类的实例
-        HumanFactory humanFactory =new HumanFactory();
+        HumanFactory humanFactory = new HumanFactory();
         BlackHuman blackHuman = humanFactory.createHuman(BlackHuman.class);
         blackHuman.getColor();
         blackHuman.talk();
@@ -54,7 +63,7 @@ public class ExampleUnitTest {
 
     // 抽象工厂测试
     @Test
-    public void testAbstractFactory(){
+    public void testAbstractFactory() {
         // 生产男性的生产线
         FemaleHumanFactory femaleHumanFactory = new FemaleHumanFactory();
         // 生产女性的生产线
@@ -75,7 +84,7 @@ public class ExampleUnitTest {
 
     // 模板方法模式测试
     @Test
-    public void testTemplate(){
+    public void testTemplate() {
         PlantMelonTemplate melonTemplate = new PlantMelonTemplate();
         melonTemplate.isWatering(true);
         melonTemplate.templateMothod();
@@ -87,39 +96,39 @@ public class ExampleUnitTest {
 
     // 静态代理测试
     @Test
-    public void testStaticProxy(){
+    public void testStaticProxy() {
         //玩家自己操作
         GamePlayer gamePlayer = new GamePlayer("jordan");
-        gamePlayer.login("jordan","jjj");
+        gamePlayer.login("jordan", "jjj");
         gamePlayer.killBoss();
         gamePlayer.upgrade();
 
         // 找个代练
-        GamePlayProxy gamePlayProxy =new GamePlayProxy(gamePlayer);
-        gamePlayProxy.login("jordan","jjj");
+        GamePlayProxy gamePlayProxy = new GamePlayProxy(gamePlayer);
+        gamePlayProxy.login("jordan", "jjj");
         gamePlayProxy.killBoss();
         gamePlayProxy.upgrade();
     }
 
     // 动态代理测试
     @Test
-    public void testDynamicProxy(){
+    public void testDynamicProxy() {
         IGamePlayer gamePlayer = new GamePlayer("jordan");
         InvocationHandler handler = new GamePlayIH(gamePlayer);
         ClassLoader classLoader = gamePlayer.getClass().getClassLoader();
         IGamePlayer proxy = (IGamePlayer) Proxy.newProxyInstance(classLoader, new Class[]{IGamePlayer.class}, handler);
-        proxy.login("jordan","jjj");
+        proxy.login("jordan", "jjj");
         proxy.killBoss();
         proxy.upgrade();
     }
 
     // 中介者模式测试
     @Test
-    public void testMediator(){
+    public void testMediator() {
         // 猎头 老板 求职者
         HeadhuntingMediator mediator = new HeadhuntingMediator();
-        Boss boss = new Boss("Jack Ma",mediator);
-        Jobhunter jobhunter = new Jobhunter("Pony",mediator);
+        Boss boss = new Boss("Jack Ma", mediator);
+        Jobhunter jobhunter = new Jobhunter("Pony", mediator);
 
         mediator.setBoss(boss);
         mediator.setJobhunter(jobhunter);
@@ -130,7 +139,7 @@ public class ExampleUnitTest {
 
     // 命令模式测试
     @Test
-    public void testOrder(){
+    public void testOrder() {
         // 创建接收者
         Receiver receiver = new Receiver();
         //创建具体的命令对象，设定它的接收者
@@ -147,5 +156,29 @@ public class ExampleUnitTest {
         // 执行方法
         invoker.allAction();
         invoker.removeCommand(weChatCommand);
+    }
+
+    // 责任链模式测试
+    @Test
+    public void testIterator() {
+        // 创建所有领导对象
+        GroupLeader groupLeader = new GroupLeader();
+        CTO cto = new CTO();
+        CEO ceo = new CEO();
+
+        //随机生成几个请假员工
+        Random random = new Random();
+        ArrayList<IEmployee> employeeArrayList = new ArrayList<>();
+        for (int i = 0; i <5 ; i++) {
+            employeeArrayList.add(new Employee(random.nextInt(10),"回家相亲"));
+        }
+
+        // 设置下一位处理对象
+        groupLeader.setNextHandler(cto);
+        cto.setNextHandler(ceo);
+        for(IEmployee employee:employeeArrayList) {
+            // 发起请求
+            groupLeader.handlerRequest(employee);
+        }
     }
 }
