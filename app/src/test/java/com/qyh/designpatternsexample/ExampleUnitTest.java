@@ -3,6 +3,15 @@ package com.qyh.designpatternsexample;
 import com.qyh.designpatternsexample.abstrafactory.abstract_product.Human;
 import com.qyh.designpatternsexample.abstrafactory.concrete_factory.FemaleHumanFactory;
 import com.qyh.designpatternsexample.abstrafactory.concrete_factory.MaleHumanFactory;
+import com.qyh.designpatternsexample.decorator.concretedecorator.Pg;
+import com.qyh.designpatternsexample.decorator.concretedecorator.SF;
+import com.qyh.designpatternsexample.decorator.concretedecorator.SG;
+import com.qyh.designpatternsexample.decorator.example.packet.IversonLayupPacket;
+import com.qyh.designpatternsexample.decorator.example.packet.JordanDunkPacket;
+import com.qyh.designpatternsexample.decorator.example.packet.KobeShootPacket;
+import com.qyh.designpatternsexample.decorator.example.skinplayer.BlackPlayer;
+import com.qyh.designpatternsexample.decorator.example.skinplayer.WhitePlayer;
+import com.qyh.designpatternsexample.decorator.example.skinplayer.YellowPlayer;
 import com.qyh.designpatternsexample.factory.concrete_product.BlackHuman;
 import com.qyh.designpatternsexample.factory.concrete_product.WhiteHuman;
 import com.qyh.designpatternsexample.factory.contrete_factory.HumanFactory;
@@ -180,5 +189,26 @@ public class ExampleUnitTest {
             // 发起请求
             groupLeader.handlerRequest(employee);
         }
+    }
+
+    // 装饰模式测试
+    @Test
+    public void testDecorator(){
+        // 这样我们就可以随意组装不同位置不同皮肤的球员了
+//        BlackPlayer blackPlayer = new BlackPlayer(new Pg());
+//        WhitePlayer whitePlayer = new WhitePlayer(new SG());
+//        YellowPlayer yellowPlayer = new YellowPlayer(new SF());
+//        blackPlayer.seat();
+//        whitePlayer.seat();
+//        yellowPlayer.seat();
+
+        BlackPlayer blackPlayer = new BlackPlayer(new KobeShootPacket(new SG()));
+        YellowPlayer yellowPlayer = new YellowPlayer(new JordanDunkPacket(new SF()));
+        WhitePlayer whitePlayer = new WhitePlayer(new IversonLayupPacket(new Pg()));
+
+        blackPlayer.seat();
+        yellowPlayer.seat();
+        whitePlayer.seat();
+
     }
 }
