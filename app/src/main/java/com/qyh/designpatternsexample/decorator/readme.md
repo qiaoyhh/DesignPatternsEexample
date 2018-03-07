@@ -3,7 +3,7 @@
 动态地给对象添加一些额外的职责。就增加功能来说，装饰模式生成子类更为灵活。
 
 感觉有点抽象？换个方式理解一下：装饰者模式可以灵活方便的扩展客户端的功能，是继承关系的一种替代方案。
-### 二、UML类图急解析
+### 二、UML类图及解析
 ![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/decorator_uml.png)
 - 抽象组件(Component)角色：给出一个抽象接口，以规范准备接收附加责任的对象。
 - 具体组件(ConcreteComponent)角色：定义一个将要接收附加责任的类(原始类)。
@@ -158,6 +158,7 @@ public class YellowPg extends Pg {
 "玩家感觉游戏里的球员动作（投篮，运球，扣篮等）都一样，感觉没有个性，用户体验也不好，我们需要增加球员的特殊动作，比如科比的投篮包，
 乔丹的扣篮包，艾弗森的上篮包。。。"，这个时候，如果我们再按照上面那种继承方式，我想我们就要哭了，这得需要创建多少没用的类呀。这个时候
 装饰模式就用了用武之地了，我们把刚才球员换肤那个功能用装饰模式也修改一下，代码如下：
+
 **抽象装饰者**
 ```java
 public  class SeatDecorator extends AbstractSeat {
@@ -247,6 +248,7 @@ public class WhitePlayer extends SeatDecorator {
 Log如下，完美~
 
 ![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/decorator_log1.png)
+
 接下来我们再设计动作包。
 ```java
 // 科比投篮包
@@ -322,7 +324,7 @@ Log如下：完美~
 
 ![](https://github.com/qiaoyhh/DesignPatternsEexample/blob/master/app/src/main/res/mipmap-xhdpi/decorator_log2.png)
 
-###四、优缺点
+### 四、优缺点
 #### 优点
 - 1、装饰模式可以动态地扩展一个实现类的功能，而且不用修改原有代码，符合开闭原则。
 - 2、装饰模式是继承关系的一个替代方案，但是比继承灵活。

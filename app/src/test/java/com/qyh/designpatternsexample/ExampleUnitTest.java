@@ -15,7 +15,6 @@ import com.qyh.designpatternsexample.decorator.example.skinplayer.YellowPlayer;
 import com.qyh.designpatternsexample.factory.concrete_product.BlackHuman;
 import com.qyh.designpatternsexample.factory.concrete_product.WhiteHuman;
 import com.qyh.designpatternsexample.factory.contrete_factory.HumanFactory;
-import com.qyh.designpatternsexample.iterator.example.AbstractLeader;
 import com.qyh.designpatternsexample.iterator.example.CEO;
 import com.qyh.designpatternsexample.iterator.example.CTO;
 import com.qyh.designpatternsexample.iterator.example.Employee;
@@ -33,6 +32,11 @@ import com.qyh.designpatternsexample.proxy.dynamic_proxy.GamePlayIH;
 import com.qyh.designpatternsexample.proxy.static_proxy.GamePlayProxy;
 import com.qyh.designpatternsexample.proxy.static_proxy.GamePlayer;
 import com.qyh.designpatternsexample.proxy.static_proxy.IGamePlayer;
+import com.qyh.designpatternsexample.strategy.CommonStrategy;
+import com.qyh.designpatternsexample.strategy.DiscountNum;
+import com.qyh.designpatternsexample.strategy.GoldStrategy;
+import com.qyh.designpatternsexample.strategy.IDiscountStrategy;
+import com.qyh.designpatternsexample.strategy.JewelStrategy;
 import com.qyh.designpatternsexample.template.concrete_class.PlantMelonTemplate;
 import com.qyh.designpatternsexample.template.concrete_class.PlantPeasTemplate;
 
@@ -210,5 +214,26 @@ public class ExampleUnitTest {
         yellowPlayer.seat();
         whitePlayer.seat();
 
+    }
+
+    // 策略模式测试
+    @Test
+    public void testStrategy(){
+        // 创建需要使用的策略对象
+        IDiscountStrategy commonStrategy = new CommonStrategy();
+        IDiscountStrategy goldStrategy = new GoldStrategy();
+        IDiscountStrategy jewelStrategy = new JewelStrategy();
+        // 创建环境
+        DiscountNum commonNum = new DiscountNum(commonStrategy);
+        DiscountNum goldNum = new DiscountNum(goldStrategy);
+        DiscountNum jewelNum = new DiscountNum(jewelStrategy);
+        // 计算价钱
+        double commonDiscount = commonNum.calculateTax(5000);
+        double goldDiscount = goldNum.calculateTax(5000);
+        double jewelDiscount = jewelNum.calculateTax(5000);
+
+        System.out.println("普通用户需要交钱数 "+commonDiscount);
+        System.out.println("黄金会员需要交钱数 "+goldDiscount);
+        System.out.println("钻石会员需要交钱数 "+jewelDiscount);
     }
 }
