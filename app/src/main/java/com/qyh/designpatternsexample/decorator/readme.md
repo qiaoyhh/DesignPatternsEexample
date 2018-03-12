@@ -231,6 +231,7 @@ public class WhitePlayer extends SeatDecorator {
 ```
 我们看到，我们的构造方法是调用的super()的构造方法，也就是调用的SeatDecorator的构造方法，我们的seat中也先调用了super.seat()
 然后后面加上了我们的装饰内容，也就是说我们传进来的一个AbstractSeat对象被我们装饰了。这就相当于UML中的ConcreteDecorator。
+
 **客户端**
 ```java
  // 装饰模式测试

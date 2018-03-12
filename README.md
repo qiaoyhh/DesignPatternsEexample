@@ -11,6 +11,7 @@
 - [责任链模式](/app/src/main/java/com/qyh/designpatternsexample/iterator/readme.md)
 - [装饰模式](/app/src/main/java/com/qyh/designpatternsexample/decorator/readme.md)
 - [策略模式](/app/src/main/java/com/qyh/designpatternsexample/strategy/readme.md)
+- [观察者模式](/app/src/main/java/com/qyh/designpatternsexample/observer/readme.md)
 
 
 持续更新，仍有更多内容尚未完善

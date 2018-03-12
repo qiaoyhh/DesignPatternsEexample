@@ -23,6 +23,10 @@ import com.qyh.designpatternsexample.iterator.example.IEmployee;
 import com.qyh.designpatternsexample.mediator.Boss;
 import com.qyh.designpatternsexample.mediator.HeadhuntingMediator;
 import com.qyh.designpatternsexample.mediator.Jobhunter;
+import com.qyh.designpatternsexample.observer.ConcreteObserver;
+import com.qyh.designpatternsexample.observer.ConcreteSubject;
+import com.qyh.designpatternsexample.observer.IObserver;
+import com.qyh.designpatternsexample.observer.Subject;
 import com.qyh.designpatternsexample.order.Receiver;
 import com.qyh.designpatternsexample.order.command.QQCommand;
 import com.qyh.designpatternsexample.order.command.SinaCommand;
@@ -235,5 +239,18 @@ public class ExampleUnitTest {
         System.out.println("普通用户需要交钱数 "+commonDiscount);
         System.out.println("黄金会员需要交钱数 "+goldDiscount);
         System.out.println("钻石会员需要交钱数 "+jewelDiscount);
+    }
+
+    // 观察者模式测试
+    @Test
+    public void testObserver(){
+        // 创建被观察者
+        ConcreteSubject concreteSubject = new ConcreteSubject();
+        // 定义一个观察者
+        IObserver observer1 = new ConcreteObserver();
+        // 把观察者注入到被观察者中
+        concreteSubject.addObserver(observer1);
+        // 观察者发生改变
+        concreteSubject.changeState();
     }
 }

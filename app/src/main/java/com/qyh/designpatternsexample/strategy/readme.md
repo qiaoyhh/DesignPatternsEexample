@@ -33,6 +33,7 @@ public class ConcreteStrategy2 implements Strategy {
 }
 ```
 策略模式的重点就是封装角色，它是借用了代理模式的思路。
+
 **封装角色**
 ```java
 public class Context {
@@ -68,6 +69,7 @@ context.doAnythinig();
 假如我们是维护这个产品的开发人员，算法工程师已经给我们写好了算法，就等着我们去调用了。按照我们以往的思路，先判断用户的级别
 (if-else/ swith-case)，然后再根据对应的折扣算出最后应付的钱，假如我们这个算法很复杂，如果用判断用户级别的方法会过给我
 们代码造成很大的臃肿，所以我换个方式去实现，尝试用一下策略模式做一下：
+
 **抽象策略模式**
 ```java
 public interface IDiscountStrategy {
