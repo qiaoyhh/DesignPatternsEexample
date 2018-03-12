@@ -154,7 +154,41 @@ mDataSetObservable.notifyChanged()中遍历所有观察者，并且调用它们�
 
 总结：观察者模式主要的作用就是对象解耦，在Android源码中用到观察者模式的地方还有很多，比如：BroadcastReceiver、TextWatcher、包括RXjava、EventBus等等。像我们平时写的
 回调也属于观察者的一种形式。
+Rxjava是一个非常优秀的项目，其设计原理也非常符合观察者模式，大致使用代码如下：
 
+**创建被观察者**
+```java
+Observable<String> myObservable = Observable.create(  
+    new Observable.OnSubscribe<String>() {  
+        @Override  
+        public void call(Subscriber<? super String> sub) {  
+            sub.onNext("onNext");  
+            sub.onCompleted();  
+        }  
+    }  
+);
+```
+**创建观察者**
+```java
+Subscriber<String> mySubscriber = new Subscriber<String>() {  
+    @Override  
+    public void onNext(String s) {
+         System.out.println(s);
+    }  
+
+    @Override  
+    public void onCompleted() {
+     }  
+
+    @Override  
+    public void onError(Throwable e) { 
+    }  
+}; 
+```
+**观察者进行事件订阅**
+```java
+myObservable.subscribe(mySubscriber); 
+```
 
 ### 四、优缺点
 #### 优点：
