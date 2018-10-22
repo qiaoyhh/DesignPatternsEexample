@@ -12,8 +12,8 @@
 - [装饰模式](/app/src/main/java/com/qyh/designpatternsexample/decorator/readme.md)
 - [策略模式](/app/src/main/java/com/qyh/designpatternsexample/strategy/readme.md)
 - [观察者模式](/app/src/main/java/com/qyh/designpatternsexample/observer/readme.md)
-- [观察者模式](/app/src/main/java/com/qyh/designpatternsexample/observer/readme.md)
 - [外观模式](/app/src/main/java/com/qyh/designpatternsexample/facade/readme.md)
+- [Builder模式](/app/src/main/java/com/qyh/designpatternsexample/builder/readme.md)
 
 
 持续更新，仍有更多内容尚未完善!
