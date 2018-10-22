@@ -66,6 +66,7 @@ public class Person {
 
 于是我们就可以这样创建Person类。
 
+```java
 Person.Builder builder=new Person.Builder();
 Person person=builder
   .name("qyh")
@@ -73,6 +74,7 @@ Person person=builder
   .height(180)
   .weight(80)
   .build();
+```
 
 ### 最后总结一下Android Builder模式的用法：
 
