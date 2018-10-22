@@ -6,6 +6,7 @@
 - [抽象工厂模式](/app/src/main/java/com/qyh/designpatternsexample/abstrafactory/readme.md)
 - [模板方法模式](/app/src/main/java/com/qyh/designpatternsexample/template/readme.md)
 - [代理者模式](/app/src/main/java/com/qyh/designpatternsexample/proxy/readme.md)
+- [Builder模式](/app/src/main/java/com/qyh/designpatternsexample/builder/readme.md)
 - [中介者模式](/app/src/main/java/com/qyh/designpatternsexample/mediator/readme.md)
 - [命令模式](/app/src/main/java/com/qyh/designpatternsexample/order/readme.md)
 - [责任链模式](/app/src/main/java/com/qyh/designpatternsexample/iterator/readme.md)
@@ -13,7 +14,6 @@
 - [策略模式](/app/src/main/java/com/qyh/designpatternsexample/strategy/readme.md)
 - [观察者模式](/app/src/main/java/com/qyh/designpatternsexample/observer/readme.md)
 - [外观模式](/app/src/main/java/com/qyh/designpatternsexample/facade/readme.md)
-- [Builder模式](/app/src/main/java/com/qyh/designpatternsexample/builder/readme.md)
 
 
 持续更新，仍有更多内容尚未完善!
