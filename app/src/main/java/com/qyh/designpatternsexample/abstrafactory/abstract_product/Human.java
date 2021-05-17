@@ -6,6 +6,12 @@ package com.qyh.designpatternsexample.abstrafactory.abstract_product;
  */
 
 public interface Human {
+
+
+
+
+
+
     void getColor();
 
     void talk();
