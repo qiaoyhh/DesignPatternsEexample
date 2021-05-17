@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android_Demo-DesignPatternsEexample.iml" filepath="$PROJECT_DIR$/.idea/modules/Android_Demo-DesignPatternsEexample.iml" group="DesignPatternsEexample" />
       <module fileurl="file://$PROJECT_DIR$/DesignPatternsEexample.iml" filepath="$PROJECT_DIR$/DesignPatternsEexample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DesignPatternsEexample-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DesignPatternsEexample-app.iml" group="DesignPatternsEexample/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
